@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 class Ergodicity:
 
-    def __init__(self, winning_probabilty, loosing_probabilty):
-        self.probabilities = [loosing_probabilty, winning_probabilty]
+    def __init__(self, winning_factor, losing_factor):
+        self.wealth_factors = [losing_factor, winning_factor]
         self.rng = np.random.default_rng()
 
     def tossing_coin(self):
@@ -27,9 +27,9 @@ class Ergodicity:
         coin_toss = self.tossing_coin()
         #print("Coin toss", coin_toss)
         if coin_toss == 0:
-            score *= self.probabilities[0]
+            score *= self.wealth_factors[0]
         else:
-            score *= self.probabilities[1]    
+            score *= self.wealth_factors[1]    
         return score
 
     def create_coin_toss_series(self, nr_coin_tosses):
@@ -113,7 +113,7 @@ class Ergodicity:
         average_score = ergodicity.calculate_finite_ensemble_average(ensemble_score, nr_coin_tosses, nr_of_trials)
         ergodicity.plot_score(range(nr_coin_tosses), score, average_score)
      
-ergodicity = Ergodicity(winning_probabilty=1.5, loosing_probabilty=0.6)
+ergodicity = Ergodicity(winning_factor=1.5, losing_factor=0.6)
 ergodicity.run_process_simulation(nr_coin_tosses=52, nr_of_trials=1000)
 
      
